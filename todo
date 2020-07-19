@@ -3,7 +3,9 @@ TODO:
   ✔ Make a GitHub repo @done(20-07-19 15:21)
   ✔ Line number Poggies @done(20-07-19 16:28)
   ✔ '\n' characters shouldn't be shown @done(20-07-20 01:32)
-  ☐ Remove lines from m_lines when needed
+  ✔ Make backspace remove empty lines @done(20-07-20 01:50)
+  ☐ Make enter actually create new lines, not just jump to the next one
+  ☐ TextArea line number container doesn't decrease in size
   ☐ Refactor TextArea, especailly text editing/cursor handling
   ☐ Tokenize into words instead of lines
 
@@ -11,6 +13,8 @@ TODO:
     ☐ Show current filename in window
   ☐ Text selection
   ☐ Mouse navigation
+  ☐ Editor vs File lines
+    File lines are all lines contained in a file but Editor lines also include synthetic lines created by the editor to help with wrapping. Editor lines do not get line numbers.
   ☐ Ligatures
     ☐ HarfBuzz
       https://github.com/harfbuzz/harfbuzz

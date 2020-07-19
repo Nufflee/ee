@@ -84,10 +84,9 @@ void TextArea::on_event(SDL_Event event)
 
       if (m_cursor_position.x == 0 && m_cursor_position.y > 0)
       {
-        if (m_lines[m_cursor_position.y].size() > 0)
+        if (m_lines[m_cursor_position.y].size() == 0)
         {
-          // Remove the '\n' on the previous line
-          m_lines[m_cursor_position.y].pop_back();
+          m_lines.erase(m_lines.begin() + m_cursor_position.y);
         }
 
         m_cursor_position.y--;
