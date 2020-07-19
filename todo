@@ -1,0 +1,39 @@
+TODO:
+  ✔ Finish up arrow key navigation @done(20-07-19 14:48)
+  ☐ Make a GitHub repo
+  ☐ Line number Poggies
+  ☐ '\n' characters shouldn't be shown
+  ☐ Remove lines from m_lines when needed
+  ☐ Refactor TextArea, especailly text editing/cursor handling
+  ☐ Tokenize into words instead of lines
+
+  ☐ Reading and saving files
+    ☐ Show current filename in window
+  ☐ Text selection
+  ☐ Mouse navigation
+  ☐ Ligatures
+    ☐ HarfBuzz
+      https://github.com/harfbuzz/harfbuzz
+      ☐ Examples
+        Uses freetype to load and rasterize fonts, harfbuzz to extract glyphs and SDL to create a window and render text: https://github.com/lxnt/ex-sdl-freetype-harfbuzz
+        Uses freetype to load fonts, harfbuzz to extract glyphs, cairo to rasterize them, and SDL to create a window and render text: https://github.com/anoek/ex-sdl-cairo-freetype-harfbuzz
+
+Improvements:
+  ☐ Use `Window` size everywhere instead of getting the size myself every time
+  ☐ Add ability for UiElements to have children and base their size and positioning on that
+  ☐ Use a fuckin Makefile
+
+  ☐ Make (keyboard) navigation more stateful
+    ☐ Keep starting column when navigating up/down
+    ☐ Always navigate to the end of the line after using `End`
+  ☐ Performance improvements
+    ☐ It may be possible to make font rendering more efficient
+      https://stackoverflow.com/questions/29064904/how-to-render-fonts-and-text-with-sdl2-efficiently
+    ☐ Pass all big structures by &
+  ☐ Add more abstractions in case I switch to pure OpenGL at some point
+
+Bugs:
+  ☐ Fix word wrapping
+    This will require tokenization to words instead of lines.
+    ☐ Words shouldn't be cut when they cross the wrapping boundary
+    ☐ Also put words on the next line if there's a space after it so space is not the first chracter on a line because it looks weird
