@@ -105,8 +105,6 @@ void TextArea::on_event(SDL_Event event)
     }
     else if (key == SDLK_RETURN)
     {
-      m_lines[m_cursor_position.y].insert(m_cursor_position.x, "\n");
-
       m_cursor_position.x = 0;
       m_cursor_position.y++;
 

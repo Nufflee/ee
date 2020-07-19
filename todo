@@ -2,7 +2,7 @@ TODO:
   ✔ Finish up arrow key navigation @done(20-07-19 14:48)
   ✔ Make a GitHub repo @done(20-07-19 15:21)
   ✔ Line number Poggies @done(20-07-19 16:28)
-  ☐ '\n' characters shouldn't be shown
+  ✔ '\n' characters shouldn't be shown @done(20-07-20 01:32)
   ☐ Remove lines from m_lines when needed
   ☐ Refactor TextArea, especailly text editing/cursor handling
   ☐ Tokenize into words instead of lines
