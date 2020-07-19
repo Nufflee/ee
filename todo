@@ -1,7 +1,7 @@
 TODO:
   ✔ Finish up arrow key navigation @done(20-07-19 14:48)
-  ☐ Make a GitHub repo
-  ☐ Line number Poggies
+  ✔ Make a GitHub repo @done(20-07-19 15:21)
+  ✔ Line number Poggies @done(20-07-19 16:28)
   ☐ '\n' characters shouldn't be shown
   ☐ Remove lines from m_lines when needed
   ☐ Refactor TextArea, especailly text editing/cursor handling
@@ -31,6 +31,7 @@ Improvements:
       https://stackoverflow.com/questions/29064904/how-to-render-fonts-and-text-with-sdl2-efficiently
     ☐ Pass all big structures by &
   ☐ Add more abstractions in case I switch to pure OpenGL at some point
+  ☐ File explorer
 
 Bugs:
   ☐ Fix word wrapping

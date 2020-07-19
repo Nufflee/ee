@@ -21,7 +21,10 @@ void HorizontalLayout::render(SDL_Renderer *renderer)
   }
   else
   {
-    assert(false && "Fixed not supported yet");
+    assert(elements.size() <= 2 && "Not supported yet because idk how to implement Pepega");
+
+    elements[1]->position = {position.x + elements[0]->size.width.to_pixels(window_width), position.y};
+    elements[1]->size = {Value::pixels(size.width.to_pixels(window_width) - elements[0]->size.width.to_pixels(window_width)), size.height};
   }
 
   for (auto element : elements)

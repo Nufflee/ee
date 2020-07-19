@@ -13,8 +13,8 @@ constexpr const std::common_type_t<L, R> min(const L left, const R right)
   return right;
 }
 
-TextArea::TextArea(const Vec2i position, const Size2 size, const std::string &content, TTF_Font *font, const SDL_Color color)
-    : UiElement(position, size), font(font), color(color)
+TextArea::TextArea(const Vec2i position, const Size2 size, const std::string &content, Container &line_number_container, TTF_Font *font, const SDL_Color color)
+    : UiElement(position, size), font(font), color(color), m_line_number_container(line_number_container)
 {
   m_font_height = TTF_FontHeight(font);
   TTF_GlyphMetrics(font, 0, nullptr, nullptr, nullptr, nullptr, &m_font_advance);
@@ -186,6 +186,31 @@ void TextArea::render_line(SDL_Renderer *renderer, const std::string &line, cons
   SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, font_surface);
 
   SDL_Rect rect = {position.x, position.y + (line_number - 1) * text_height, text_width, text_height};
+  SDL_RenderCopy(renderer, texture, NULL, &rect);
+
+  render_line_number(renderer, line_number);
+}
+
+void TextArea::render_line_number(SDL_Renderer *renderer, const int line_number)
+{
+  std::string line_number_str = std::to_string(line_number);
+
+  int text_width, text_height;
+  TTF_SizeText(font, line_number_str.c_str(), &text_width, &text_height);
+
+  int container_width = m_line_number_container.size.width.to_pixels(Window::the()->get_width());
+
+  constexpr int expansion = 30;
+
+  if (container_width - expansion < text_width)
+  {
+    m_line_number_container.size.width = Value::pixels(text_width + expansion);
+  }
+
+  SDL_Surface *font_surface = TTF_RenderText_Blended(font, line_number_str.c_str(), {180, 180, 180, 255});
+  SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, font_surface);
+
+  SDL_Rect rect = {m_line_number_container.position.x + (container_width - text_width - 10), position.y + (line_number - 1) * text_height, text_width, text_height};
   SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 

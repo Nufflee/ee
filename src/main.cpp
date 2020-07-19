@@ -4,6 +4,7 @@
 #include "window.hpp"
 #include "ui/container.hpp"
 #include "ui/vertical_layout.hpp"
+#include "ui/horizontal_layout.hpp"
 #include "ui/text_area.hpp"
 #include "vec2.hpp"
 #include "size2.hpp"
@@ -60,16 +61,21 @@ int main()
   VerticalLayout layout = {{&horizontal_layout1, &horizontal_layout2}, {0, 0}, {100_percent, 100_percent}, LayoutType::Centered};
   */
 
-  const int top_bar_height = 50;
+  constexpr int top_bar_height = 50;
+  constexpr int line_number_width = 50;
 
   Container top_bar = {{}, {100_percent, Value::pixels(top_bar_height)}, {30, 30, 30, 255}};
-  Container content = {{0, top_bar_height}, {}, {40, 40, 40, 255}};
-  VerticalLayout layout = {{&top_bar, &content}, {}, {100_percent, 100_percent}, LayoutType::Fixed};
+
+  Container line_number_container = {{}, {Value::pixels(line_number_width), 100_percent}, {30, 30, 30, 255}};
+  Container editor = {{}, {}, {40, 40, 40, 255}};
+  HorizontalLayout content_layout = {{&line_number_container, &editor}, {0, top_bar_height}, {}, LayoutType::Fixed};
+
+  VerticalLayout layout = {{&top_bar, &content_layout}, {}, {100_percent, 100_percent}, LayoutType::Fixed};
 
   const char *code = "this is a very long test string to check if our content setting and line wrapping works properly. i really do hope that it does but i dont know.";
   //const char *code = "";
 
-  TextArea text_area = {{10, top_bar_height + 10}, {25_percent, 100_percent}, code, font, {255, 255, 255, 255}};
+  TextArea text_area = {{line_number_width + 10, top_bar_height + 10}, {25_percent, 100_percent}, code, line_number_container, font, {255, 255, 255, 255}};
 
   while (!should_quit)
   {
