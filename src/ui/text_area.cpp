@@ -48,11 +48,8 @@ void TextArea::render(SDL_Renderer *renderer)
 
 void TextArea::on_event(SDL_Event event)
 {
-  auto insert_line = [=](size_t line) {
-    if (line >= m_lines.size())
-    {
-      m_lines.insert(m_lines.begin() + line, "");
-    }
+  auto insert_line = [&](size_t line) {
+    m_lines.insert(m_lines.begin() + line, "");
   };
 
   if (event.type == SDL_TEXTINPUT)
@@ -84,13 +81,22 @@ void TextArea::on_event(SDL_Event event)
 
       if (m_cursor_position.x == 0 && m_cursor_position.y > 0)
       {
+        bool deleted = false;
+
         if (m_lines[m_cursor_position.y].size() == 0)
         {
           m_lines.erase(m_lines.begin() + m_cursor_position.y);
+
+          deleted = true;
         }
 
         m_cursor_position.y--;
         m_cursor_position.x = m_lines[m_cursor_position.y].size();
+
+        if (m_lines[m_cursor_position.y].size() == 0 && !deleted)
+        {
+          m_lines.erase(m_lines.begin() + m_cursor_position.y);
+        }
       }
       else
       {
@@ -104,10 +110,21 @@ void TextArea::on_event(SDL_Event event)
     }
     else if (key == SDLK_RETURN)
     {
-      m_cursor_position.x = 0;
-      m_cursor_position.y++;
+      if (m_cursor_position.x == 0)
+      {
+        insert_line(m_cursor_position.y);
 
-      insert_line(m_cursor_position.y);
+        m_cursor_position.x = 0;
+        m_cursor_position.y++;
+      }
+      else
+      {
+        // TODO: Split line here, don't just create a new one
+        m_cursor_position.x = 0;
+        m_cursor_position.y++;
+
+        insert_line(m_cursor_position.y);
+      }
     }
     else if (key == SDLK_LEFT)
     {

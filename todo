@@ -4,10 +4,11 @@ TODO:
   ✔ Line number Poggies @done(20-07-19 16:28)
   ✔ '\n' characters shouldn't be shown @done(20-07-20 01:32)
   ✔ Make backspace remove empty lines @done(20-07-20 01:50)
-  ☐ Make enter actually create new lines, not just jump to the next one
+  ✔ Make enter always create new lines, not just jump to the next one @done(20-07-23 09:02)
   ☐ TextArea line number container doesn't decrease in size
   ☐ Refactor TextArea, especailly text editing/cursor handling
   ☐ Tokenize into words instead of lines
+  ☐ Use Ctrl to jump over words
 
   ☐ Reading and saving files
     ☐ Show current filename in window
