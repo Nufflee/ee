@@ -2,17 +2,6 @@
 
 #include "window.hpp"
 
-template <typename L, typename R>
-constexpr const std::common_type_t<L, R> min(const L left, const R right)
-{
-  if (left < right)
-  {
-    return left;
-  }
-
-  return right;
-}
-
 TextArea::TextArea(const Vec2i position, const Size2 size, const std::string &content, Container &line_number_container, TTF_Font *font, const SDL_Color color)
     : UiElement(position, size), font(font), color(color), m_line_number_container(line_number_container)
 {
@@ -161,7 +150,7 @@ void TextArea::on_event(SDL_Event event)
       if (m_cursor_position.y > 0)
       {
         m_cursor_position.y--;
-        m_cursor_position.x = min(m_cursor_position.x, m_lines[m_cursor_position.y].size());
+        m_cursor_position.x = std::min(m_cursor_position.x, m_lines[m_cursor_position.y].size());
       }
       else
       {
@@ -173,7 +162,7 @@ void TextArea::on_event(SDL_Event event)
       if (m_cursor_position.y < m_lines.size() - 1)
       {
         m_cursor_position.y++;
-        m_cursor_position.x = min(m_cursor_position.x, m_lines[m_cursor_position.y].size());
+        m_cursor_position.x = std::min(m_cursor_position.x, m_lines[m_cursor_position.y].size());
       }
       else
       {

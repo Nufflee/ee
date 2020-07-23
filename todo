@@ -6,10 +6,12 @@ TODO:
   ✔ Make backspace remove empty lines @done(20-07-20 01:50)
   ✔ Make enter always create new lines, not just jump to the next one @done(20-07-23 09:02)
   ☐ TextArea line number container doesn't decrease in size
-  ☐ Refactor TextArea, especailly text editing/cursor handling
   ☐ Tokenize into words instead of lines
   ☐ Use Ctrl to jump over words
+  ☐ Refactor TextArea, especailly text editing/cursor handling
 
+  ☐ Add ability for UiElements to have children and base their size and positioning on that
+    ☐ Utilize this in TextArea so it can create its own containers
   ☐ Reading and saving files
     ☐ Show current filename in window
   ☐ Text selection
@@ -25,7 +27,6 @@ TODO:
 
 Improvements:
   ☐ Use `Window` size everywhere instead of getting the size myself every time
-  ☐ Add ability for UiElements to have children and base their size and positioning on that
   ☐ Use a fuckin Makefile
 
   ☐ Make (keyboard) navigation more stateful
